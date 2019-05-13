@@ -35,10 +35,6 @@
 %% values in them; it is your responsibility as an author to replace
 %% the commands and values with those provided to you when you
 %% complete the rights form.
-\setcopyright{acmcopyright}
-\copyrightyear{2018}
-\acmYear{2018}
-\acmDOI{10.1145/1122445.1122456}
 
 %%
 %% Submission ID.
@@ -66,7 +62,7 @@
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title{Meltdown: Reading Kernel from User Space}
+\title{Meltdown: Reading Kernel Memory from User Space}
 
 %%
 %% The "author" command and its associated commands are used to define
@@ -78,12 +74,9 @@
 %%\authornote{Both authors contributed equally to this research.}
 \email{enrik.doci@b-tu.de}
 \orcid{1234-5678-9012}
-\author{G.K.M. Tobin}
-\authornotemark[1]
-\email{webmaster@marysville-ohio.com}
 \affiliation{%
-  \institution{Institute for Clarity in Documentation}
-  \streetaddress{P.O. Box 1212}
+  \institution{Brandenburg Technical University}
+  \streetaddress{Universitatsstrasse 1}
   \city{Cottbus}
   \state{Germany}
   \postcode{03046}
@@ -140,17 +133,21 @@
 
 
 \section{Background}
-As noted in the introduction, the ``\verb|acmart|'' document class can
+\subsection{Memory Hierarchy}
 
-selecting the appropriate {\itshape template style} and {\itshape
-  template parameters}.
+\subsubsection{Caching}
+The need for fast memory that could keep up with the CPU frequency is limited by the high cost per byte these high-performance memories come with.
+To address this issue, small but fast memory is assigned to the CPU, a slightly slower but random-based accessable memory is assigned to the running applications, and the secondary memory for storing data at rest.
+The memory close to the CPU, called a cache, takes advantage of {\itshape spatial locality} (data to be processed tend to be close to the data already being processed) and {\itshape temporal locality} (processed data tends to be requested multiple times during execution).
 
-This document will explain the major features of the document
-class. For further information, the {\itshape \LaTeX\ User's Guide} is
-available from
-\url{https://www.acm.org/publications/proceedings-template}.
+A typical architecture consists of 3 levels of caches, with two being private per core and the third one being shared. For efficiency, data is moved in {\itshape blocks} (or lines) which contain a fixed size of words. Placing the blocks in cache can be made via different schemes, such as {\itshape set associative} (), {\itshape n-way set associative} () or {\itshape fully associative} ().
 
-\subsection{Template Styles}
+%%\url{https://www.acm.org/publications/proceedings-template}.
+
+\subsubsection{Virtual Memory}
+Each process runs within its own address space, so there is a need to share the limited main memory between all running processes. The method used to achieve this is through {\itshape virtual memory}; the physical memory is divided into blocks and allocated to any process in need for memory. In order for processes not to access the blocks of other processes, protection schemes have to apply. 
+
+\subsection{CPU Architecture and out-of-order Execution}
 
 
 \begin{verbatim}
@@ -166,7 +163,7 @@ use the {\verb|acmsmall|} template style:
 \end{itemize}
 
 
-\subsection{Template Parameters}
+\subsection{Side-channel Attacks on Cache }
 
 
 \section{Modifications}
