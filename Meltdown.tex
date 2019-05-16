@@ -150,17 +150,12 @@ Each process runs within its own address space, so there is a need to share the 
 \subsection{CPU Architecture and out-of-order Execution}
 
 
-\begin{verbatim}
-  \documentclass[STYLE]{acmart}
-\end{verbatim}
+The CPU architectures affected by the attack mentioned in this paper have all a microarchitecture that is pipelined, super-scalar, out-of-order and with speculative execution. This section will further explain each of these methods used to perform instruction-level parallelism (ILP).
+Pipelining is a technique which allows multiple instructions to overlap during execution, each using different resources oft he processor. Standartization of instruction in execution phases such as fetch, decode, execute, memory access and write-back, which do not have hardware dependencies between them. 
+Superscalar processors can execute more than one instruction during a clock cycle. 
 
-Journals use one of three template styles. All but three ACM journals
-use the {\verb|acmsmall|} template style:
-\begin{itemize}
-\item {\verb|acmsmall|}: The default journal template style.
-\item {\verb|acmlarge|}: Used by JOCCH and TAP.
-\item {\verb|acmtog|}: Used by TOG.
-\end{itemize}
+In the front-end, instructions are decoded into micro-ops (μ-ops), and are sent into the IDQ (μ-op queue). Breaking every instruction into μ-ops makes it possible for any procesor to execute commands without the need of modifying the instruction set. 
+BPU (Branch Prediction Unit) decides on branch instructions which block of code will be executed, before knowing for sure the correct flow of the execution. This prediction is usually a trade secret, and only the manufacterer knows the algorithm used, but the main ways to predict a path are : ---content here--- Instructions on the path that is going to be executed, start executing immediately as long as they don‘t have any dependencies. Upon realizing that the prediction was incorrect, the reorder buffer is rolled-back to a correct state (flushed) and the unified reservation station is re-initialized. This way, unauthorized instructions are executed and can change the microarchitectural state, but the change will not be reflected on the architecture state. 
 
 
 \subsection{Side-channel Attacks on Cache }
