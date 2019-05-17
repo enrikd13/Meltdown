@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.6)  13 MAY 2019 07:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.6)  17 MAY 2019 05:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/enrik/Desktop/Meltdown/Meltdown
+**c:/Users/enrik/Desktop/Meltdown/Meltdown.tex
 (c:/Users/enrik/Desktop/Meltdown/Meltdown.tex
 LaTeX2e <2018-12-01>
-(./acmart.cls
+(c:/Users/enrik/Desktop/Meltdown/acmart.cls
 Document Class: acmart 2019/03/29 v1.59 Typesetting articles for the Association for Computing Machinery
 (c:/texlive/2019/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
@@ -727,7 +727,7 @@ Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 60.
  (c:/texlive/2019/texmf-dist/tex/latex/preprint/balance.sty
 Package: balance 1999/02/23 4.3 (PWD)
 \oldvsize=\dimen156
-) Excluding comment 'screenonly' Include comment 'printonly' Include comment 'anonsuppress' (./Meltdown.aux)
+) Excluding comment 'screenonly' Include comment 'printonly' Include comment 'anonsuppress' (c:/Users/enrik/Desktop/Meltdown/Meltdown.aux)
 \openout1 = `Meltdown.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 60.
@@ -831,7 +831,7 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 60.
 LaTeX Info: Redefining \pageref on input line 60.
 LaTeX Info: Redefining \nameref on input line 60.
- (./Meltdown.out) (./Meltdown.out)
+ (c:/Users/enrik/Desktop/Meltdown/Meltdown.out) (c:/Users/enrik/Desktop/Meltdown/Meltdown.out)
 \@outlinefile=\write4
 \openout4 = `Meltdown.out'.
 
@@ -903,25 +903,25 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 130.
-LaTeX Font Info:    Try loading font information for T1+LinuxBiolinumT-TLF on input line 130.
+(Font)              scaled to size 17.28pt on input line 138.
+LaTeX Font Info:    Try loading font information for T1+LinuxBiolinumT-TLF on input line 138.
  (c:/texlive/2019/texmf-dist/tex/latex/libertine/T1LinuxBiolinumT-TLF.fd
 File: T1LinuxBiolinumT-TLF.fd 2017/03/20 (autoinst) Font definitions for T1/LinuxBiolinumT-TLF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 130.
+(Font)              scaled to size 17.28pt on input line 138.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LinuxBiolinumT-TLF' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/b/n' will be
-(Font)              scaled to size 17.28pt on input line 130.
+(Font)              scaled to size 17.28pt on input line 138.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 130.
+(Font)              scaled to size 12.0pt on input line 138.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 130.
+(Font)              scaled to size 10.0pt on input line 138.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 130.
+(Font)              scaled to size 10.0pt on input line 138.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LinuxLibertineT-TLF' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
@@ -932,25 +932,28 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 130.
+(Font)              scaled to size 9.0pt on input line 138.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 130.
+(Font)              scaled to size 10.95pt on input line 138.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 130.
+(Font)              scaled to size 9.0pt on input line 138.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 130.
+(Font)              scaled to size 7.3pt on input line 138.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 139.
+(Font)              scaled to size 9.0pt on input line 148.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 139.
+(Font)              scaled to size 9.0pt on input line 148.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 141.
-LaTeX Font Info:    Try loading font information for T1+zi4 on input line 153.
+(Font)              scaled to size 9.0pt on input line 150.
+ [1.1{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+]
+LaTeX Font Info:    Try loading font information for T1+zi4 on input line 198.
  (c:/texlive/2019/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 153.
+(Font)              scaled to size 9.0pt on input line 198.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
@@ -961,38 +964,45 @@ Package microtype Info: Character `textendash ' is missing
 Package microtype Info: Character `textemdash ' is missing
 (microtype)             in font `T1/zi4/m/n/9'.
 (microtype)             Ignoring protrusion settings for this character.
- [1.1{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-]
-Overfull \hbox (2.79185pt too wide) in paragraph at lines 282--286
+Overfull \hbox (2.79185pt too wide) in paragraph at lines 299--303
 \T1/LinuxLibertineT-TLF/m/n/9 (-20) Your work should use stan-dard L[]T[]X sec-tion-ing com-mands: [][]\T1/zi4/m/n/9 section[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) ,
  []
 
 
-Overfull \hbox (1.26605pt too wide) in paragraph at lines 282--286
+Overfull \hbox (1.26605pt too wide) in paragraph at lines 299--303
 [][]\T1/zi4/m/n/9 subsection[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) , [][]\T1/zi4/m/n/9 subsubsection[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) , and [][]\T1/zi4/m/n/9 paragraph[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) . They should be num-
  []
 
+[2.2]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 7.3pt on input line 306.
+(Font)              scaled to size 7.3pt on input line 323.
 
-Underfull \vbox (badness 2142) has occurred while \output is active []
 
- [2.2]
+LaTeX Warning: Reference `tab:freq' on page 3 undefined on input line 326.
+
+
+LaTeX Warning: Reference `tab:commands' on page 3 undefined on input line 350.
+
+
+Underfull \vbox (badness 1092) has occurred while \output is active []
+
 <sample-franklin.png, id=164, 411.5375pt x 323.2075pt>
 File: sample-franklin.png Graphic file (type png)
 <use sample-franklin.png>
-Package pdftex.def Info: sample-franklin.png  used on input line 404.
+Package pdftex.def Info: sample-franklin.png  used on input line 421.
 (pdftex.def)             Requested size: 241.14749pt x 189.3888pt.
+ [3.3 <c:/Users/enrik/Desktop/Meltdown/sample-franklin.png>]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/sc' will be
-(Font)              scaled to size 9.0pt on input line 435.
- [3.3 <./sample-franklin.png>] Processing 'acks' comment.
+(Font)              scaled to size 9.0pt on input line 452.
+ Processing 'acks' comment.
 \openout3 = `comment.cut'.
 
- Comment 'acks' writing to comment.cut. Straight input of comment.cut. (./comment.cut) (./Meltdown.bbl
+ Comment 'acks' writing to comment.cut. Straight input of comment.cut. (c:/Users/enrik/Desktop/Meltdown/comment.cut) (c:/Users/enrik/Desktop/Meltdown/Meltdown.bbl
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 7.0pt on input line 60.
 LaTeX Info: Redefining \tempurl on input line 65.
+ [4.4]
 LaTeX Info: Redefining \tempurl on input line 80.
 LaTeX Info: Redefining \tempurl on input line 127.
 LaTeX Info: Redefining \tempurl on input line 147.
@@ -1013,33 +1023,36 @@ LaTeX Info: Redefining \tempurl on input line 464.
 LaTeX Info: Redefining \tempurl on input line 476.
 LaTeX Info: Redefining \tempurl on input line 490.
 )
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4.4]
-Overfull \vbox (1.674pt too high) has occurred while \output is active []
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
 
- [5.5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 585.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 585.
- (./Meltdown.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 585.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 585.
+[5.5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 602.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 602.
+ (c:/Users/enrik/Desktop/Meltdown/Meltdown.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 602.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 602.
 Package rerunfilecheck Info: File `Meltdown.out' has not changed.
-(rerunfilecheck)             Checksum: 352DA0407FD841DC2C4803D3EAC31ECB;4465.
+(rerunfilecheck)             Checksum: 54608E158FDE4203124042958A63C7A8;4830.
+
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 18334 strings out of 492623
- 274763 string characters out of 6133291
- 403257 words of memory out of 5000000
- 21336 multiletter control sequences out of 15000+600000
- 152859 words of font info for 316 fonts, out of 8000000 for 9000
+ 18343 strings out of 492623
+ 275426 string characters out of 6133291
+ 405148 words of memory out of 5000000
+ 21339 multiletter control sequences out of 15000+600000
+ 153230 words of font info for 318 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,12n,94p,827b,579s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumTI.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/fxlri-7letters.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/zxlr.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on Meltdown.pdf (5 pages, 683253 bytes).
+ 60i,12n,94p,831b,579s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumTI.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/fxlri-7letters.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/zxlr.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/zxlri.pfb>
+Output written on c:/Users/enrik/Desktop/Meltdown/Meltdown.pdf (5 pages, 686987 bytes).
 PDF statistics:
- 369 PDF objects out of 1000 (max. 8388607)
- 323 compressed objects within 4 object streams
- 79 named destinations out of 1000 (max. 500000)
- 45306 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 379 PDF objects out of 1000 (max. 8388607)
+ 333 compressed objects within 4 object streams
+ 82 named destinations out of 1000 (max. 500000)
+ 45330 words of extra memory for PDF output out of 51595 (max. 10000000)
 

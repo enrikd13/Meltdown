@@ -59,6 +59,14 @@
 %% end of the preamble, start of the body of the document source.
 \begin{document}
 
+% Math-mode symbol & verbatim
+\def\W#1#2{$#1{#2}$ &\tt\string#1\string{#2\string}}
+\def\X#1{$#1$ &\tt\string#1}
+\def\Y#1{$\big#1$ &\tt\string#1}
+\def\Z#1{\tt\string#1}
+\renewcommand{\label}[1]{}
+
+
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
@@ -111,7 +119,7 @@
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{datasets, neural networks, gaze detection, text tagging}
+\keywords{out-of-order execution, side-channel attack, transient instruction, + others}
 
 %% A "teaser" image appears between the author and affiliation
 %% information and the body of the document, and typically spans the
@@ -131,47 +139,59 @@
 
 \section{Introduction}
 
+Content to be added later
 
 \section{Background}
 \subsection{Memory Hierarchy}
 
 \subsubsection{Caching}
 The need for fast memory that could keep up with the CPU frequency is limited by the high cost per byte these high-performance memories come with.
-To address this issue, small but fast memory is assigned to the CPU, a slightly slower but random-based accessable memory is assigned to the running applications, and the secondary memory for storing data at rest.
+To address this issue, extremely fast registers are placed inside the CPU, small but fast memory is assigned to the CPU, a slightly slower but random-based accessable memory is assigned to the running applications, and the secondary memory for storing data at rest.
 The memory close to the CPU, called a cache, takes advantage of {\itshape spatial locality} (data to be processed tend to be close to the data already being processed) and {\itshape temporal locality} (processed data tends to be requested multiple times during execution).
 
 A typical architecture consists of 3 levels of caches, with two being private per core and the third one being shared. For efficiency, data is moved in {\itshape blocks} (or lines) which contain a fixed size of words. Placing the blocks in cache can be made via different schemes, such as {\itshape set associative} (), {\itshape n-way set associative} () or {\itshape fully associative} ().
 
-%%\url{https://www.acm.org/publications/proceedings-template}.
-
 \subsubsection{Virtual Memory}
-Each process runs within its own address space, so there is a need to share the limited main memory between all running processes. The method used to achieve this is through {\itshape virtual memory}; the physical memory is divided into blocks and allocated to any process in need for memory. In order for processes not to access the blocks of other processes, protection schemes have to apply. 
+Each process runs within its own address space, so there is a need to share the limited main memory between all running processes. The method used to achieve this is through {\itshape virtual memory}; the physical memory is divided into blocks called pages, and allocated to any process in need for memory. The processor issues virtual memory addresses for memory operations, which are mapped to physical ones using page translation tables. The translation table is held inside a CPU register, and it is per-process only; the operating system updates them for every process being executed. 
+
+In order for processes not to access the blocks of other processes, protection schemes have to apply. Translation tables have privilege checks that are 
 
 \subsection{CPU Architecture and out-of-order Execution}
 
-
 The CPU architectures affected by the attack mentioned in this paper have all a microarchitecture that is pipelined, super-scalar, out-of-order and with speculative execution. This section will further explain each of these methods used to perform instruction-level parallelism (ILP).
-Pipelining is a technique which allows multiple instructions to overlap during execution, each using different resources oft he processor. Standartization of instruction in execution phases such as fetch, decode, execute, memory access and write-back, which do not have hardware dependencies between them. 
-Superscalar processors can execute more than one instruction during a clock cycle. This is not the same as multi-core processor, but rather having multiple execution resources inside the CPU, for example ALUs. 
-Out-of-order execution makes it possible for instructions to continue execution even when the previous one is blocked and waitting for other operations tob e completed. 
-Speculative execution means that the compiler or the processor tries to guess the outcome of an instruction, thus removing it as a dependency in the execution path of other instructions. Since out focus is the hardware architecture, the main speculative execution on a processor ist hat of branch predicition, explained below. 
-In the front-end, instructions are decoded into micro-ops (μ-ops), and are sent into the IDQ (μ-op queue). Breaking every instruction into μ-ops makes it possible for any procesor to execute commands without the need of modifying the instruction set. 
+
+{\itshape Pipelining} is a technique which allows multiple instructions to overlap during execution, each using different resources oft he processor. Standartization of instruction in execution phases such as fetch, decode, execute, memory access and write-back, which do not have hardware dependencies between them. 
+
+{\itshape Superscalar} processors can execute more than one instruction during a clock cycle. This is not the same as multi-core processor, but rather having multiple execution resources inside the CPU, for example ALUs. 
+
+{\itshape Out-of-order execution} makes it possible for instructions to continue execution even when the previous one is blocked and waitting for other operations to be completed. 
+
+{\itshape Speculative execution} means that the compiler or the processor tries to guess the outcome of an instruction, thus removing it as a dependency in the execution path of other instructions. Since out focus is the hardware architecture, the main speculative execution on a processor ist hat of branch predicition, explained below. 
+
+In the front-end, instructions are decoded into micro-ops (u-ops), and are sent into the IDQ (u-op queue). Breaking every instruction into u-ops makes it possible for any procesor to execute commands without the need of modifying the instruction set. 
 BPU (Branch Prediction Unit) decides on branch instructions which block of code will be executed, before knowing for sure the correct flow of the execution. This prediction is usually a trade secret, and only the manufacterer knows the algorithm used, but the main ways to predict a path are : ---content here--- Instructions on the path that is going to be executed, start executing immediately as long as they don‘t have any dependencies. Upon realizing that the prediction was incorrect, the reorder buffer is rolled-back to a correct state (flushed) and the unified reservation station is re-initialized. This way, unauthorized instructions are executed and can change the microarchitectural state, but the change will not be reflected on the architecture state. 
-%% https://www.eit.lth.se/fileadmin/eit/courses/edt621/Rapporter/2016/Gregory_Austin_EDT621_Report.pdf https://software.intel.com/sites/default/files/managed/39/c5/325462-sdm-vol-1-2abcd-3abcd.pdf https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-optimization-manual.pdf http://ac.aua.am/arm/public/2017-Spring-Computer-Organization/Textbooks/ComputerOrganizationAndDesign5thEdition2014.pdf
 
+\subsection{Flush+Reload}
 
-\subsection{Side-channel Attacks on Cache }
+Content goes here
 
+\section{Related Works}
 
-\section{Modifications}
+Exploitation can be observed during multiple steps of ILP. In the front-end this can happen during speculation via branch prediction (BPU), albeit difficult to exploit in the wild due to the mechanics of dynamic branch prediction not being publicly known. Exploitations can further be performed during dynamic scheduling (BPU \& IFU) and speculative execution (IDQ).
 
-Modifying the template --- including but not limited to: adjusting
-margins, typeface sizes, line spacing, paragraph and list definitions,
-and the use of the \verb|\vspace| command to manually adjust the
-vertical spacing between elements of your work --- is not allowed.
+In the back-end exploitations can be observed during the register renaming (allocate/rename/retire unit), superscalar and out-of-order (scheduler) and in-order commit (retirement).
 
-{\bfseries Your document will be returned to you for revision if
-  modifications are discovered.}
+\subsection{Spectre}
+
+While Meltdown makes use of the out-of-order execution to read and leak kernel memory that under normal execution they should not have, Spectre uses speculative execution property of branch prediction (conditional and indirect branches) to read arbitrary memory. Before BPU realizes the branch was wrongly predicted, some instructions are already speculatively executed, and through a side channel the confidential information is sent from a microarchitectural state to an architectural one. 
+
+Unlike Meltdown, Spectre works on a wide range of processors, including most ARM and AMD models and not just Intel and some ARM. Also, KAISER mechanism used to mitigate Meltdown, doesn't protect against Spectre. 
+
+\subsection{ZombieLoad}
+
+ZombieLoad is another Meltdown-like attack that benefits from fault-driven transient instruction execution. This exploitation is performed on the fill-buffer using faulty Load instructions that have to be re-issued internally but don't become architecturaly visible. The values accessed by these Load instructions are those of recent registers belonging to previous memory operations from the current or a sibling hyperthread, unlike Meltdown that has to use explicit address-based selectors. Protection against ZombieLoad can be achived only by disabling hyperthreading. 
+
+\subsection{Cache Side-channel Attacks}
 
 \section{Typefaces}
 
