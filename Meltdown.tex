@@ -59,14 +59,6 @@
 %% end of the preamble, start of the body of the document source.
 \begin{document}
 
-% Math-mode symbol & verbatim
-\def\W#1#2{$#1{#2}$ &\tt\string#1\string{#2\string}}
-\def\X#1{$#1$ &\tt\string#1}
-\def\Y#1{$\big#1$ &\tt\string#1}
-\def\Z#1{\tt\string#1}
-\renewcommand{\label}[1]{}
-
-
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
@@ -96,7 +88,7 @@
 %% other information printed in the page headers. This command allows
 %% the author to define a more concise list
 %% of authors' names for this purpose.
-\renewcommand{\shortauthors}{Trovato and Tobin, et al.}
+\renewcommand{\shortauthors}{Enrik Doçi}
 
 %%
 %% The abstract is a short summary of the work to be presented in the
@@ -147,9 +139,10 @@ Content to be added later
 \subsubsection{Caching}
 The need for fast memory that could keep up with the CPU frequency is limited by the high cost per byte these high-performance memories come with.
 To address this issue, extremely fast registers are placed inside the CPU, small but fast memory is assigned to the CPU, a slightly slower but random-based accessable memory is assigned to the running applications, and the secondary memory for storing data at rest.
+
 The memory close to the CPU, called a cache, takes advantage of {\itshape spatial locality} (data to be processed tend to be close to the data already being processed) and {\itshape temporal locality} (processed data tends to be requested multiple times during execution).
 
-A typical architecture consists of 3 levels of caches, with two being private per core and the third one being shared. For efficiency, data is moved in {\itshape blocks} (or lines) which contain a fixed size of words. Placing the blocks in cache can be made via different schemes, such as {\itshape set associative} (), {\itshape n-way set associative} () or {\itshape fully associative} ().
+A typical architecture consists of 3 levels of caches, with two being private per core and the third one being shared. For efficiency, data is moved in {\itshape blocks} (or lines) which contain a fixed size of words. Placing the blocks in cache can be made via different schemes, such as {\itshape set associative} (each block has a pre-determined position in cache), {\itshape n-way set associative} (each block can be placed in one of n possible positions in cache) or {\itshape fully associative} (the block can be placed anywhere in cache).
 
 \subsubsection{Virtual Memory}
 Each process runs within its own address space, so there is a need to share the limited main memory between all running processes. The method used to achieve this is through {\itshape virtual memory}; the physical memory is divided into blocks called pages, and allocated to any process in need for memory. The processor issues virtual memory addresses for memory operations, which are mapped to physical ones using page translation tables. The translation table is held inside a CPU register, and it is per-process only; the operating system updates them for every process being executed. 
@@ -164,16 +157,26 @@ The CPU architectures affected by the attack mentioned in this paper have all a 
 
 {\itshape Superscalar} processors can execute more than one instruction during a clock cycle. This is not the same as multi-core processor, but rather having multiple execution resources inside the CPU, for example ALUs. 
 
-{\itshape Out-of-order execution} makes it possible for instructions to continue execution even when the previous one is blocked and waitting for other operations to be completed. 
-
 {\itshape Speculative execution} means that the compiler or the processor tries to guess the outcome of an instruction, thus removing it as a dependency in the execution path of other instructions. Since out focus is the hardware architecture, the main speculative execution on a processor ist hat of branch predicition, explained below. 
 
-In the front-end, instructions are decoded into micro-ops (u-ops), and are sent into the IDQ (u-op queue). Breaking every instruction into u-ops makes it possible for any procesor to execute commands without the need of modifying the instruction set. 
+{\itshape Out-of-order execution} makes it possible for instructions to continue execution the moment all the required resources are available, even when the previous one is blocked and waitting for other operations to be completed. This is not to be confused with speculative execution below; in out-of-order execution all the instructions are correctly executed and no assumptions are made. Still, all the execution results stay at an microarchitecture state till all prior instructions are commited. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{skylake_simple_diagram}
+  \caption{Simplified design of a Skylake Core. for detailed picture, choose skylake\_block\_diagram [Public domain maybe? check!!!], via (\url{https://en.wikichip.org/wiki/intel/microarchitectures/skylake_(client)}). }
+  \Description{The 1907 Franklin Model D roadster.}
+\end{figure}
+
+The first step to achieve out-of-order execution is to solve data hazards (data dependencises from previous instructions), such as read-after-write, write-after-read and write-after-write (RAW, WAR, WAW). Normally, even in a pipelined datapath, the output from a previous instruction would be available only after the last phase, memory writeback. Tomasulo \cite{Cohen07} suggested the use of a unified reservation station that would make the outputs available the moment they were ready, and not having to wait for it to be stored and re-read using common data bus (CDB), that connects all execution units with each-other. 
+
+In the front-end, instructions are decoded into micro-ops (u-ops), and are sent into the IDQ (u-op queue). Breaking every instruction into u-ops makes it possible for any procesor to execute commands without the need of modifying the instruction set. They are later sent to the back-end (execution engine) where the logic of out-of-order is implemented. They are later forwarded to the scheduler, which decides on which execution unit u-ops should be send depending on their specific task. 
+
 BPU (Branch Prediction Unit) decides on branch instructions which block of code will be executed, before knowing for sure the correct flow of the execution. This prediction is usually a trade secret, and only the manufacterer knows the algorithm used, but the main ways to predict a path are : ---content here--- Instructions on the path that is going to be executed, start executing immediately as long as they don‘t have any dependencies. Upon realizing that the prediction was incorrect, the reorder buffer is rolled-back to a correct state (flushed) and the unified reservation station is re-initialized. This way, unauthorized instructions are executed and can change the microarchitectural state, but the change will not be reflected on the architecture state. 
 
 \subsection{Flush+Reload}
 
-Content goes here
+Content to be added : FLUSH+RELOAD : a high resolution, low-noise L3cacche side channel attack.
 
 \section{Related Works}
 
