@@ -290,6 +290,12 @@ INPUT c:/texlive/2019/texmf-dist/fonts/vf/public/libertine/LinBiolinumTI-tlf-t1.
 INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/libertine/LinBiolinumTI-tlf-t1--base.tfm
 INPUT c:/texlive/2019/texmf-dist/fonts/vf/public/libertine/LinLibertineTI-tlf-t1.vf
 INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/libertine/LinLibertineTI-tlf-t1--base.tfm
+INPUT c:/texlive/2019/texmf-dist/fonts/vf/public/newtx/nxlmi.vf
+INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/rfxlri-alt.tfm
+INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/txfonts/txmi.tfm
+INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/zxlr-8r.tfm
+INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/zxlri-8r.tfm
+INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/rntxmi.tfm
 INPUT c:/texlive/2019/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 INPUT c:/texlive/2019/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/inconsolata/t1-zi4r-4.tfm
@@ -301,12 +307,6 @@ INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/libertine/LinLibertineTI-tlf-t
 INPUT c:/texlive/2019/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
-INPUT c:/texlive/2019/texmf-dist/fonts/vf/public/newtx/nxlmi.vf
-INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/rfxlri-alt.tfm
-INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/txfonts/txmi.tfm
-INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/zxlr-8r.tfm
-INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/zxlri-8r.tfm
-INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/rntxmi.tfm
 INPUT c:/texlive/2019/texmf-dist/fonts/vf/public/newtx/nxlmia.vf
 INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/rfxlr-alt.tfm
 INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/newtx/Libertine-nu.tfm
