@@ -55,6 +55,14 @@
 %% the next command will enable that style.
 %%\citestyle{acmauthoryear}
 
+
+\usepackage{array}
+\newcommand{\head}[2]{\multicolumn{1}{>{\centering\arraybackslash}p{#1}}{\textbf{#2}}}
+
+\usepackage{listings}
+
+
+
 %%
 %% end of the preamble, start of the body of the document source.
 \begin{document}
@@ -113,16 +121,6 @@
 %% the work being presented. Separate the keywords with commas.
 \keywords{out-of-order execution, side-channel attack, transient instruction, + others}
 
-%% A "teaser" image appears between the author and affiliation
-%% information and the body of the document, and typically spans the
-%% page.
-%%\begin{teaserfigure}
-%% \includegraphics[width=\textwidth]{sampleteaser}
-%%  \caption{Seattle Mariners at Spring Training, 2010.}
-%%  \Description{Enjoying the baseball game from the third-base
-%%  seats. Ichiro Suzuki preparing to bat.}
-%%  \label{fig:teaser}
-%%\end{teaserfigure}
 
 %%
 %% This command processes the author and affiliation and title
@@ -134,15 +132,30 @@
 Content to be added later
 
 \section{Background}
+To properly understand how Meltdown works, more specifically the steps to bypass memory isolation by taking advantage of out-of-order execution and further use timing differences in cache memory to create a covert channel, it is important to understand the purpose of each component used during this attack, and how they operate. This section is focused on the basics of memory hierarchy (caching and virtual memory) and an overview of CPU architecture to further understand out-of-order execution. 
 \subsection{Memory Hierarchy}
-
 \subsubsection{Caching}
 The need for fast memory that could keep up with the CPU frequency is limited by the high cost per byte these high-performance memories come with.
-To address this issue, extremely fast registers are placed inside the CPU, small but fast memory is assigned to the CPU, a slightly slower but random-based accessable memory is assigned to the running applications, and the secondary memory for storing data at rest.
+To address this issue, extremely fast registers are placed inside the CPU, small but fast memory is assigned to the CPU, a slightly slower but random-based accessable memory is assigned to the running applications, and the secondary memory for storing data at rest. 
 
 The memory close to the CPU, called a cache, takes advantage of {\itshape spatial locality} (data to be processed tend to be close to the data already being processed) and {\itshape temporal locality} (processed data tends to be requested multiple times during execution).
 
 A typical architecture consists of 3 levels of caches, with two being private per core and the third one being shared. For efficiency, data is moved in {\itshape blocks} (or lines) which contain a fixed size of words. Placing the blocks in cache can be made via different schemes, such as {\itshape set associative} (each block has a pre-determined position in cache), {\itshape n-way set associative} (each block can be placed in one of n possible positions in cache) or {\itshape fully associative} (the block can be placed anywhere in cache).
+
+The memory and speed of a typical modern desktop computer \cite{Hennessy:2017:CAS:3207796} tends to be as follows :
+
+\begin{table}[h]
+  \label{tab:freq}
+  \begin{tabular}{p{0.66cm}|p{0.75cm}p{0.75cm}p{0.75cm}p{0.75cm}p{1cm}p{1cm}}
+     & \textbf{CPU Reg.} & \textbf{L1 cache} & \textbf{L2 Cache} & \textbf{L3 Cache} & \textbf{Main Mem.} & \textbf{Secon. Mem.}\\
+     \hline
+    Size & 2000 Bytes & 64 KB & 256 KB & 8-32 MB & 8-64 GB & 256 GB - 2 TB\\
+    \hline
+    Speed & 300 ps & 1 ns & 3-10 ns & 10-20 ns & 50-100 ns & 50-100 $\mu$s\\
+  %\bottomrule
+\end{tabular}
+\caption{Memory hierarchy for a Desktop Computer}
+\end{table}
 
 \subsubsection{Virtual Memory}
 Each process runs within its own address space, so there is a need to share the limited main memory between all running processes. The method used to achieve this is through {\itshape virtual memory}; the physical memory is divided into blocks called pages, and allocated to any process in need for memory. The processor issues virtual memory addresses for memory operations, which are mapped to physical ones using page translation tables. The translation table is held inside a CPU register, and it is per-process only; the operating system updates them for every process being executed. 
@@ -164,9 +177,11 @@ The CPU architectures affected by the attack mentioned in this paper have all a 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{skylake_simple_diagram}
-  \caption{Simplified design of a Skylake Core. for detailed picture, choose skylake\_block\_diagram [Public domain maybe? check!!!], via (\url{https://en.wikichip.org/wiki/intel/microarchitectures/skylake_(client)}). }
+  \caption{Simplified design of a Skylake Core.}  
   \Description{The 1907 Franklin Model D roadster.}
 \end{figure}
+
+\footnote{ for detailed picture, choose skylake\_block\_diagram [Public domain maybe? check!!!], via (). }
 
 The first step to achieve out-of-order execution is to solve data hazards (data dependencises from previous instructions), such as read-after-write, write-after-read and write-after-write (RAW, WAR, WAW). Normally, even in a pipelined datapath, the output from a previous instruction would be available only after the last phase, memory writeback. Tomasulo \cite{Cohen07} suggested the use of a unified reservation station that would make the outputs available the moment they were ready, and not having to wait for it to be stored and re-read using common data bus (CDB), that connects all execution units with each-other. 
 
@@ -176,7 +191,32 @@ BPU (Branch Prediction Unit) decides on branch instructions which block of code 
 
 \subsection{Flush+Reload}
 
-Content to be added : FLUSH+RELOAD : a high resolution, low-noise L3cacche side channel attack.
+Flush+Reload\cite{Knuth97} is a side-channel attack technique with minimal noise induction, that has been used to implement in practice Meltdown attacks. This attack exploits a weakness on Intel X86 processors, where access to memory lines in shared pages can be monitored, and used to leak informations from processes. It targets the L3 cache, thus the attack can be performed even on other execution cores. 
+
+\section{Meltdown}
+
+The main idea of meltdown is to throw an unhandled exception, which will cause the operating system to take control of the execution flow and handle the exeption. This means that the control flow will execute in kernel mode. Till now, nothing out of the ordinary happens, but due to out-of-order execution, the next few instructions being executed, now will run on kernel space and not user space. These instructions will not be retired, thus not saving the microarchitectural changes and the results of the executed instructions.
+
+To have access to kernel data, a simple move instruction can be performed, causing the byte referenced in the memory to be fetched and stored in a register, and also cached . While not much can be done to retrieve the data from te register since it will not be commited, the cached values will continue to stay on.
+
+The following machine code instructions can be easily used to give the basic concept of the attack, while removing the complexity of a real world example. 
+\begin{lstlisting}
+; rcx = a protected kernel memory address
+; rbx = address of a large array in user space
+mov al, byte [rcx]         
+shl rax, 0xc
+mov rbx, qword [rbx + rax]
+\end{lstlisting}
+
+The move instruction reads the byte at address where the register rcx points to, and copies the value to register al. Since this address falls under the kernel space, an exeption will be thrown, and the execution will jump to the exception handler. In this case the exception will be a page fault, and the operating system will flush the re
+
+\section{Real-World attacks}
+
+Text here
+
+\section{Countermeasures and Mitigation}
+
+Text here 
 
 \section{Related Works}
 
@@ -196,372 +236,17 @@ ZombieLoad is another Meltdown-like attack that benefits from fault-driven trans
 
 \subsection{Cache Side-channel Attacks}
 
-\section{Typefaces}
+While at 2.3 Flush+Reload was used to transmit the data from the microarchitectural state to the attacker process, any other cache side-channel attack can be used. Such side-channel attacks are as below : \cite{8686667}
 
-The ``\verb|acmart|'' document class requires the use of the
-``Libertine'' typeface family. Your \TeX\ installation should include
-this set of packages. Please do not substitute other typefaces. The
-``\verb|lmodern|'' and ``\verb|ltimes|'' packages should not be used,
-as they will override the built-in typeface families.
+\subsubsection{Evict+Time}
 
-\section{Title Information}
+Text here
 
-The title of your work should use capital letters appropriately -
-\url{https://capitalizemytitle.com/} has useful rules for
-capitalization. Use the {\verb|title|} command to define the title of
-your work. If your work has a subtitle, define it with the
-{\verb|subtitle|} command.  Do not insert line breaks in your title.
+\subsubsection{Prime+Probe}
 
-If your title is lengthy, you must define a short version to be used
-in the page headers, to prevent overlapping text. The \verb|title|
-command has a ``short title'' parameter:
-\begin{verbatim}
-  \title[short title]{full title}
-\end{verbatim}
+\subsubsection{Evict+Time}
 
-\section{Authors and Affiliations}
-
-Each author must be defined separately for accurate metadata
-identification. Multiple authors may share one affiliation. Authors'
-names should not be abbreviated; use full first names wherever
-possible. Include authors' e-mail addresses whenever possible.
-
-Grouping authors' names or e-mail addresses, or providing an ``e-mail
-alias,'' as shown below, is not acceptable:
-\begin{verbatim}
-  \author{Brooke Aster, David Mehldau}
-  \email{dave,judy,steve@university.edu}
-  \email{firstname.lastname@phillips.org}
-\end{verbatim}
-
-The \verb|authornote| and \verb|authornotemark| commands allow a note
-to apply to multiple authors --- for example, if the first two authors
-of an article contributed equally to the work.
-
-If your author list is lengthy, you must define a shortened version of
-the list of authors to be used in the page headers, to prevent
-overlapping text. The following command should be placed just after
-the last \verb|\author{}| definition:
-\begin{verbatim}
-  \renewcommand{\shortauthors}{McCartney, et al.}
-\end{verbatim}
-Omitting this command will force the use of a concatenated list of all
-of the authors' names, which may result in overlapping text in the
-page headers.
-
-The article template's documentation, available at
-\url{https://www.acm.org/publications/proceedings-template}, has a
-complete explanation of these commands and tips for their effective
-use.
-
-\section{Rights Information}
-
-Authors of any work published by ACM will need to complete a rights
-form. Depending on the kind of work, and the rights management choice
-made by the author, this may be copyright transfer, permission,
-license, or an OA (open access) agreement.
-
-Regardless of the rights management choice, the author will receive a
-copy of the completed rights form once it has been submitted. This
-form contains \LaTeX\ commands that must be copied into the source
-document. When the document source is compiled, these commands and
-their parameters add formatted text to several areas of the final
-document:
-\begin{itemize}
-\item the ``ACM Reference Format'' text on the first page.
-\item the ``rights management'' text on the first page.
-\item the conference information in the page header(s).
-\end{itemize}
-
-Rights information is unique to the work; if you are preparing several
-works for an event, make sure to use the correct set of commands with
-each of the works.
-
-\section{CCS Concepts and User-Defined Keywords}
-
-Two elements of the ``acmart'' document class provide powerful
-taxonomic tools for you to help readers find your work in an online
-search.
-
-The ACM Computing Classification System ---
-\url{https://www.acm.org/publications/class-2012} --- is a set of
-classifiers and concepts that describe the computing
-discipline. Authors can select entries from this classification
-system, via \url{https://dl.acm.org/ccs/ccs.cfm}, and generate the
-commands to be included in the \LaTeX\ source.
-
-User-defined keywords are a comma-separated list of words and phrases
-of the authors' choosing, providing a more flexible way of describing
-the research being presented.
-
-CCS concepts and user-defined keywords are required for all short- and
-full-length articles, and optional for two-page abstracts.
-
-\section{Sectioning Commands}
-
-Your work should use standard \LaTeX\ sectioning commands:
-\verb|section|, \verb|subsection|, \verb|subsubsection|, and
-\verb|paragraph|. They should be numbered; do not remove the numbering
-from the commands.
-
-Simulating a sectioning command by setting the first word or words of
-a paragraph in boldface or italicized text is {\bfseries not allowed.}
-
-\section{Tables}
-
-The ``\verb|acmart|'' document class includes the ``\verb|booktabs|''
-package --- \url{https://ctan.org/pkg/booktabs} --- for preparing
-high-quality tables.
-
-Table captions are placed {\itshape above} the table.
-
-Because tables cannot be split across pages, the best placement for
-them is typically the top of the page nearest their initial cite.  To
-ensure this proper ``floating'' placement of tables, use the
-environment \textbf{table} to enclose the table's contents and the
-table caption.  The contents of the table itself must go in the
-\textbf{tabular} environment, to be aligned properly in rows and
-columns, with the desired horizontal and vertical rules.  Again,
-detailed instructions on \textbf{tabular} material are found in the
-\textit{\LaTeX\ User's Guide}.
-
-Immediately following this sentence is the point at which
-Table~\ref{tab:freq} is included in the input file; compare the
-placement of the table here with the table in the printed output of
-this document.
-
-\begin{table}
-  \caption{Frequency of Special Characters}
-  \label{tab:freq}
-  \begin{tabular}{ccl}
-    \toprule
-    Non-English or Math&Frequency&Comments\\
-    \midrule
-    \O & 1 in 1,000& For Swedish names\\
-    $\pi$ & 1 in 5& Common in math\\
-    \$ & 4 in 5 & Used in business\\
-    $\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
-  \bottomrule
-\end{tabular}
-\end{table}
-
-To set a wider table, which takes up the whole width of the page's
-live area, use the environment \textbf{table*} to enclose the table's
-contents and the table caption.  As with a single-column table, this
-wide table will ``float'' to a location deemed more
-desirable. Immediately following this sentence is the point at which
-Table~\ref{tab:commands} is included in the input file; again, it is
-instructive to compare the placement of the table here with the table
-in the printed output of this document.
-
-\begin{table*}
-  \caption{Some Typical Commands}
-  \label{tab:commands}
-  \begin{tabular}{ccl}
-    \toprule
-    Command &A Number & Comments\\
-    \midrule
-    \texttt{{\char'134}author} & 100& Author \\
-    \texttt{{\char'134}table}& 300 & For tables\\
-    \texttt{{\char'134}table*}& 400& For wider tables\\
-    \bottomrule
-  \end{tabular}
-\end{table*}
-
-\section{Math Equations}
-You may want to display math equations in three distinct styles:
-inline, numbered or non-numbered display.  Each of the three are
-discussed in the next sections.
-
-\subsection{Inline (In-text) Equations}
-A formula that appears in the running text is called an inline or
-in-text formula.  It is produced by the \textbf{math} environment,
-which can be invoked with the usual
-\texttt{{\char'134}begin\,\ldots{\char'134}end} construction or with
-the short form \texttt{\$\,\ldots\$}. You can use any of the symbols
-and structures, from $\alpha$ to $\omega$, available in
-\LaTeX~\cite{Lamport:LaTeX}; this section will simply show a few
-examples of in-text equations in context. Notice how this equation:
-\begin{math}
-  \lim_{n\rightarrow \infty}x=0
-\end{math},
-set here in in-line math style, looks slightly different when
-set in display style.  (See next section).
-
-\subsection{Display Equations}
-A numbered display equation---one set off by vertical space from the
-text and centered horizontally---is produced by the \textbf{equation}
-environment. An unnumbered display equation is produced by the
-\textbf{displaymath} environment.
-
-Again, in either environment, you can use any of the symbols and
-structures available in \LaTeX\@; this section will just give a couple
-of examples of display equations in context.  First, consider the
-equation, shown as an inline equation above:
-\begin{equation}
-  \lim_{n\rightarrow \infty}x=0
-\end{equation}
-Notice how it is formatted somewhat differently in
-the \textbf{displaymath}
-environment.  Now, we'll enter an unnumbered equation:
-\begin{displaymath}
-  \sum_{i=0}^{\infty} x + 1
-\end{displaymath}
-and follow it with another numbered equation:
-\begin{equation}
-  \sum_{i=0}^{\infty}x_i=\int_{0}^{\pi+2} f
-\end{equation}
-just to demonstrate \LaTeX's able handling of numbering.
-
-\section{Figures}
-
-The ``\verb|figure|'' environment should be used for figures. One or
-more images can be placed within a figure. If your figure contains
-third-party material, you must clearly identify it as such, as shown
-in the example below.
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{sample-franklin}
-  \caption{1907 Franklin Model D roadster. Photograph by Harris \&
-    Ewing, Inc. [Public domain], via Wikimedia
-    Commons. (\url{https://goo.gl/VLCRBB}).}
-  \Description{The 1907 Franklin Model D roadster.}
-\end{figure}
-
-Your figures should contain a caption which describes the figure to
-the reader. Figure captions go below the figure. Your figures should
-{\bfseries also} include a description suitable for screen readers, to
-assist the visually-challenged to better understand your work.
-
-Figure captions are placed {\itshape below} the figure.
-
-\subsection{The ``Teaser Figure''}
-
-A ``teaser figure'' is an image, or set of images in one figure, that
-are placed after all author and affiliation information, and before
-the body of the article, spanning the page. If you wish to have such a
-figure in your article, place the command immediately before the
-\verb|\maketitle| command:
-\begin{verbatim}
-  \begin{teaserfigure}
-    \includegraphics[width=\textwidth]{sampleteaser}
-    \caption{figure caption}
-    \Description{figure description}
-  \end{teaserfigure}
-\end{verbatim}
-
-\section{Citations and Bibliographies}
-
-The use of \BibTeX\ for the preparation and formatting of one's
-references is strongly recommended. Authors' names should be complete
---- use full first names (``Donald E. Knuth'') not initials
-(``D. E. Knuth'') --- and the salient identifying features of a
-reference should be included: title, year, volume, number, pages,
-article DOI, etc.
-
-The bibliography is included in your source document with these two
-commands, placed just before the \verb|\end{document}| command:
-\begin{verbatim}
-  \bibliographystyle{ACM-Reference-Format}
-  \bibliography{bibfile}
-\end{verbatim}
-where ``\verb|bibfile|'' is the name, without the ``\verb|.bib|''
-suffix, of the \BibTeX\ file.
-
-Citations and references are numbered by default. A small number of
-ACM publications have citations and references formatted in the
-``author year'' style; for these exceptions, please include this
-command in the {\bfseries preamble} (before
-``\verb|\begin{document}|'') of your \LaTeX\ source:
-\begin{verbatim}
-  \citestyle{acmauthoryear}
-\end{verbatim}
-
-  Some examples.  A paginated journal article \cite{Abril07}, an
-  enumerated journal article \cite{Cohen07}, a reference to an entire
-  issue \cite{JCohen96}, a monograph (whole book) \cite{Kosiur01}, a
-  monograph/whole book in a series (see 2a in spec. document)
-  \cite{Harel79}, a divisible-book such as an anthology or compilation
-  \cite{Editor00} followed by the same example, however we only output
-  the series if the volume number is given \cite{Editor00a} (so
-  Editor00a's series should NOT be present since it has no vol. no.),
-  a chapter in a divisible book \cite{Spector90}, a chapter in a
-  divisible book in a series \cite{Douglass98}, a multi-volume work as
-  book \cite{Knuth97}, an article in a proceedings (of a conference,
-  symposium, workshop for example) (paginated proceedings article)
-  \cite{Andler79}, a proceedings article with all possible elements
-  \cite{Smith10}, an example of an enumerated proceedings article
-  \cite{VanGundy07}, an informally published work \cite{Harel78}, a
-  doctoral dissertation \cite{Clarkson85}, a master's thesis:
-  \cite{anisi03}, an online document / world wide web resource
-  \cite{Thornburg01, Ablamowicz07, Poker06}, a video game (Case 1)
-  \cite{Obama08} and (Case 2) \cite{Novak03} and \cite{Lee05} and
-  (Case 3) a patent \cite{JoeScientist001}, work accepted for
-  publication \cite{rous08}, 'YYYYb'-test for prolific author
-  \cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might
-  contain 'duplicate' DOI and URLs (some SIAM articles)
-  \cite{Kirschmer:2010:AEI:1958016.1958018}. Boris / Barbara Beeton:
-  multi-volume works as books \cite{MR781536} and \cite{MR781537}. A
-  couple of citations with DOIs:
-  \cite{2004:ITE:1009386.1010128,Kirschmer:2010:AEI:1958016.1958018}. Online
-  citations: \cite{TUGInstmem, Thornburg01, CTANacmart}.
-
-\section{Acknowledgments}
-
-Identification of funding sources and other support, and thanks to
-individuals and groups that assisted in the research and the
-preparation of the work should be included in an acknowledgment
-section, which is placed just before the reference section in your
-document.
-
-This section has a special environment:
-\begin{verbatim}
-  \begin{acks}
-  ...
-  \end{acks}
-\end{verbatim}
-so that the information contained therein can be more easily collected
-during the article metadata extraction phase, and to ensure
-consistency in the spelling of the section heading.
-
-Authors should not prepare this section as a numbered or unnumbered {\verb|\section|}; please use the ``{\verb|acks|}'' environment.
-
-\section{Appendices}
-
-If your work needs an appendix, add it before the
-``\verb|\end{document}|'' command at the conclusion of your source
-document.
-
-Start the appendix with the ``\verb|appendix|'' command:
-\begin{verbatim}
-  \appendix
-\end{verbatim}
-and note that in the appendix, sections are lettered, not
-numbered. This document has two appendices, demonstrating the section
-and subsection identification method.
-
-\section{SIGCHI Extended Abstracts}
-
-The ``\verb|sigchi-a|'' template style (available only in \LaTeX\ and
-not in Word) produces a landscape-orientation formatted article, with
-a wide left margin. Three environments are available for use with the
-``\verb|sigchi-a|'' template style, and produce formatted output in
-the margin:
-\begin{itemize}
-\item {\verb|sidebar|}:  Place formatted text in the margin.
-\item {\verb|marginfigure|}: Place a figure in the margin.
-\item {\verb|margintable|}: Place a table in the margin.
-\end{itemize}
-
-%%
-%% The acknowledgments section is defined using the "acks" environment
-%% (and NOT an unnumbered section). This ensures the proper
-%% identification of the section in the article metadata, and the
-%% consistent spelling of the heading.
-\begin{acks}
-To Robert, for the bagels and explaining CMYK and color spaces.
-\end{acks}
-
+\newpage
 %%
 %% The next two lines define the bibliography style to be used, and
 %% the bibliography file.
@@ -571,36 +256,6 @@ To Robert, for the bagels and explaining CMYK and color spaces.
 %%
 %% If your work has an appendix, this is the place to put it.
 \appendix
-
-\section{Research Methods}
-
-\subsection{Part One}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-malesuada, quam in pulvinar varius, metus nunc fermentum urna, id
-sollicitudin purus odio sit amet enim. Aliquam ullamcorper eu ipsum
-vel mollis. Curabitur quis dictum nisl. Phasellus vel semper risus, et
-lacinia dolor. Integer ultricies commodo sem nec semper.
-
-\subsection{Part Two}
-
-Etiam commodo feugiat nisl pulvinar pellentesque. Etiam auctor sodales
-ligula, non varius nibh pulvinar semper. Suspendisse nec lectus non
-ipsum convallis congue hendrerit vitae sapien. Donec at laoreet
-eros. Vivamus non purus placerat, scelerisque diam eu, cursus
-ante. Etiam aliquam tortor auctor efficitur mattis.
-
-\section{Online Resources}
-
-Nam id fermentum dui. Suspendisse sagittis tortor a nulla mollis, in
-pulvinar ex pretium. Sed interdum orci quis metus euismod, et sagittis
-enim maximus. Vestibulum gravida massa ut felis suscipit
-congue. Quisque mattis elit a risus ultrices commodo venenatis eget
-dui. Etiam sagittis eleifend elementum.
-
-Nam interdum magna at lectus dignissim, ac dignissim lorem
-rhoncus. Maecenas eu arcu ac neque placerat aliquam. Nunc pulvinar
-massa et mattis lacinia.
 
 \end{document}
 \endinput
