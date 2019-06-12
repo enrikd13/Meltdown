@@ -5,53 +5,55 @@ The style file: ACM-Reference-Format.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: sample-base.bib
+Warning--I didn't find a database entry for ""
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--page numbers missing in both pages and numpages fields in Canella2018ASE
 Warning--empty publisher in 8686667
 Warning--empty address in 8686667
 Warning--empty address in Knuth97
-You've used 4 entries,
+You've used 5 entries,
             5719 wiz_defined-function locations,
-            1476 strings with 17209 characters,
-and the built_in function-call counts, 4141 in all, are:
-= -- 480
-> -- 137
+            1483 strings with 17493 characters,
+and the built_in function-call counts, 5581 in all, are:
+= -- 665
+> -- 244
 < -- 0
-+ -- 46
-- -- 52
-* -- 288
-:= -- 442
-add.period$ -- 22
-call.type$ -- 4
-change.case$ -- 25
-chr.to.int$ -- 4
-cite$ -- 7
-duplicate$ -- 373
-empty$ -- 264
-format.name$ -- 64
-if$ -- 944
++ -- 85
+- -- 88
+* -- 428
+:= -- 617
+add.period$ -- 27
+call.type$ -- 5
+change.case$ -- 38
+chr.to.int$ -- 5
+cite$ -- 9
+duplicate$ -- 457
+empty$ -- 325
+format.name$ -- 104
+if$ -- 1286
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 12
-newline$ -- 76
-num.names$ -- 32
-pop$ -- 136
+missing$ -- 16
+newline$ -- 84
+num.names$ -- 40
+pop$ -- 177
 preamble$ -- 1
-purify$ -- 60
+purify$ -- 82
 quote$ -- 0
-skip$ -- 130
+skip$ -- 153
 stack$ -- 0
-substring$ -- 284
-swap$ -- 34
+substring$ -- 345
+swap$ -- 39
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 76
-warning$ -- 3
-while$ -- 30
+type$ -- 92
+warning$ -- 4
+while$ -- 34
 width$ -- 0
-write$ -- 112
-(There were 3 warnings)
+write$ -- 128
+(There were 5 warnings)

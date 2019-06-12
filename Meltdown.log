@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.6)  11 JUN 2019 10:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.6)  12 JUN 2019 20:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -972,156 +972,170 @@ LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 7.3pt on input line 128.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 138.
+(Font)              scaled to size 9.0pt on input line 142.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 138.
+(Font)              scaled to size 9.0pt on input line 142.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 141.
+(Font)              scaled to size 9.0pt on input line 145.
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--150
+Underfull \hbox (badness 10000) in paragraph at lines 154--154
 []|\T1/LinuxLibertineT-TLF/b/n/9 CPU
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--150
+Underfull \hbox (badness 10000) in paragraph at lines 154--154
 []|\T1/LinuxLibertineT-TLF/b/n/9 L1
  []
 
 
-Overfull \hbox (1.39441pt too wide) in paragraph at lines 150--150
+Overfull \hbox (1.39441pt too wide) in paragraph at lines 154--154
 \T1/LinuxLibertineT-TLF/b/n/9 cache| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--150
+Underfull \hbox (badness 10000) in paragraph at lines 154--154
 []|\T1/LinuxLibertineT-TLF/b/n/9 L2
  []
 
 
-Overfull \hbox (3.64441pt too wide) in paragraph at lines 150--150
+Overfull \hbox (3.64441pt too wide) in paragraph at lines 154--154
 \T1/LinuxLibertineT-TLF/b/n/9 Cache| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--150
+Underfull \hbox (badness 10000) in paragraph at lines 154--154
 []|\T1/LinuxLibertineT-TLF/b/n/9 L3
  []
 
 
-Overfull \hbox (3.64441pt too wide) in paragraph at lines 150--150
+Overfull \hbox (3.64441pt too wide) in paragraph at lines 154--154
 \T1/LinuxLibertineT-TLF/b/n/9 Cache| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--150
+Underfull \hbox (badness 10000) in paragraph at lines 154--154
 []|\T1/LinuxLibertineT-TLF/b/n/9 Main
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--151
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 []|\T1/LinuxLibertineT-TLF/b/n/9 Secon.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--152
+Underfull \hbox (badness 10000) in paragraph at lines 156--156
 []|\T1/LinuxLibertineT-TLF/m/n/9 (+20) 2000
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--152
+Underfull \hbox (badness 10000) in paragraph at lines 156--156
 []|\T1/LinuxLibertineT-TLF/m/n/9 (+20) 256
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--152
+Underfull \hbox (badness 10000) in paragraph at lines 156--156
 []|\T1/LinuxLibertineT-TLF/m/n/9 (+20) 8-32
  []
 
 
-Overfull \hbox (2.6133pt too wide) in paragraph at lines 154--154
+Overfull \hbox (2.6133pt too wide) in paragraph at lines 158--158
 []|\T1/LinuxLibertineT-TLF/m/n/9 (-20) Speed| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--154
+Underfull \hbox (badness 10000) in paragraph at lines 158--158
 []|\T1/LinuxLibertineT-TLF/m/n/9 (+20) 300
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--154
+Underfull \hbox (badness 10000) in paragraph at lines 158--158
 []|\T1/LinuxLibertineT-TLF/m/n/9 (+20) 3-10
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--154
+Underfull \hbox (badness 10000) in paragraph at lines 158--158
 []|\T1/LinuxLibertineT-TLF/m/n/9 (+20) 10-20
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--154
+Underfull \hbox (badness 10000) in paragraph at lines 158--158
 []|\T1/LinuxLibertineT-TLF/m/n/9 (+20) 50-100
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--156
+Underfull \hbox (badness 10000) in paragraph at lines 158--160
 []|\T1/LinuxLibertineT-TLF/m/n/9 (+20) 50-100
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+
+Overfull \hbox (6.96759pt too wide) in paragraph at lines 171--172
+[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) To pre-vent at-tacks based on static ad-dresses of data, non-executable
+ []
+
 [1.1{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-<skylake_simple_diagram.png, id=81, 429.605pt x 601.24625pt>
+<skylake_simple_diagram.png, id=101, 429.605pt x 601.24625pt>
 File: skylake_simple_diagram.png Graphic file (type png)
 <use skylake_simple_diagram.png>
-Package pdftex.def Info: skylake_simple_diagram.png  used on input line 179.
+Package pdftex.def Info: skylake_simple_diagram.png  used on input line 187.
 (pdftex.def)             Requested size: 241.14749pt x 337.49376pt.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 184.
+(Font)              scaled to size 5.5pt on input line 192.
+ [2.2 <c:/Users/enrik/Desktop/Meltdown/skylake_simple_diagram.png>]
+<side-channel.png, id=117, 453.94594pt x 289.08pt>
+File: side-channel.png Graphic file (type png)
+<use side-channel.png>
+Package pdftex.def Info: side-channel.png  used on input line 234.
+(pdftex.def)             Requested size: 241.14749pt x 153.56895pt.
 
 
-Class acmart Warning: \vspace should only be used to provide space above/below surrounding objects on input line 203.
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3.3 <c:/Users/enrik/Desktop/Meltdown/side-channel.png>]
+
+Class acmart Warning: \vspace should only be used to provide space above/below surrounding objects on input line 265.
+
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 265.
+
+Class acmart Warning: \vspace should only be used to provide space above/below surrounding objects on input line 274.
 
 
-Overfull \hbox (7.25504pt too wide) in paragraph at lines 205--206
-[][][][][][][][][][][][][][][][][][][][][][][][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Class acmart Warning: \vspace should only be used to provide space above/below surrounding objects on input line 209.
-
-[2.2 <c:/Users/enrik/Desktop/Meltdown/skylake_simple_diagram.png>] (c:/Users/enrik/Desktop/Meltdown/Meltdown.bbl
+ [4.4] [5.5] (c:/Users/enrik/Desktop/Meltdown/Meltdown.bbl
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 7.0pt on input line 47.
+(Font)              scaled to size 7.0pt on input line 50.
 )
 
 Package balance Warning: You have called \balance in second column
 (balance)                Columns might not be balanced.
 
-[3.3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 260.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 260.
+[6.6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 390.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 390.
  (c:/Users/enrik/Desktop/Meltdown/Meltdown.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 260.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 260.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 390.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 390.
 Package rerunfilecheck Info: File `Meltdown.out' has not changed.
-(rerunfilecheck)             Checksum: DF9A50AEDF3F39AD76D153183EC4868F;2057.
+(rerunfilecheck)             Checksum: 3D6AD689CB5F0680B23C9C9562CAE863;3199.
  ) 
 Here is how much of TeX's memory you used:
- 19633 strings out of 492623
- 290574 string characters out of 6133291
- 412571 words of memory out of 5000000
- 22811 multiletter control sequences out of 15000+600000
- 120494 words of font info for 207 fonts, out of 8000000 for 9000
+ 19699 strings out of 492623
+ 291920 string characters out of 6133291
+ 418690 words of memory out of 5000000
+ 22823 multiletter control sequences out of 15000+600000
+ 124078 words of font info for 229 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,11n,94p,831b,991s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,12n,94p,1168b,1041s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumTI.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on c:/Users/enrik/Desktop/Meltdown/Meltdown.pdf (3 pages, 428933 bytes).
+Output written on c:/Users/enrik/Desktop/Meltdown/Meltdown.pdf (6 pages, 492388 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
- 39 named destinations out of 1000 (max. 500000)
- 38018 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 212 PDF objects out of 1000 (max. 8388607)
+ 181 compressed objects within 2 object streams
+ 60 named destinations out of 1000 (max. 500000)
+ 38063 words of extra memory for PDF output out of 42996 (max. 10000000)
 
